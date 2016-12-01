@@ -2,3 +2,4 @@
 /webui/obj
 /webui/*.user
 /.vs
+/webui/Properties/PublishProfiles/*.user
