@@ -185,14 +185,25 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Aspect\ConstAspect.cs" />
+    <Compile Include="Aspect\OperatorAspect.cs" />
+    <Compile Include="Aspect\ServerAspect.cs" />
+    <Compile Include="Aspect\UpIntAspect.cs" />
     <Compile Include="Controllers\AutoupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ServerController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Autoup\UpdateItem.cs" />
     <Compile Include="Models\Autoup\UpdateResult.cs" />
+    <Compile Include="Models\Operator\OperatorInfo.cs" />
+    <Compile Include="Models\Server\ServerInfo.cs" />
+    <Compile Include="Models\Server\ServerItem.cs" />
+    <Compile Include="Models\Server\ServerRequest.cs" />
+    <Compile Include="Models\Server\ServerResult.cs" />
+    <Compile Include="Models\Server\ServerState.cs" />
+    <Compile Include="Models\Upint\Upint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -13,7 +13,7 @@ namespace webui.Controllers
 {
     public class AutoupController : ApiController
     {
-        //http://localhost:8313/api/autoup/lastupdate/?nOperatorName=iosfigus&nVersionNo=1
+        //http://localhost/api/autoup/lastupdate/?nOperatorName=iosfigus&nVersionNo=1
         readonly string mLastUpdate = "SELECT updateName,updateNo,packetName,downloadUrl FROM t_lastUpdate WHERE operatorName='{0}'";
         [HttpGet]
         public HttpResponseMessage lastUpdate(string nOperatorName, int nVersionNo)
@@ -21,6 +21,13 @@ namespace webui.Controllers
             UpdateResult updateResult_ = new UpdateResult();
             updateResult_.mErrorCode = ConstAspect.mFail;
             updateResult_.mUpdateItems = null;
+
+            string operatorName_ = OperatorAspect.getOperator(nOperatorName, nVersionNo);
+            if ("" == operatorName_)
+            {
+                updateResult_.mErrorCode = ConstAspect.mOperator;
+                return toJson(updateResult_);
+            }
 
             SqlConnection sqlConnection_ = new SqlConnection();
 
@@ -30,7 +37,7 @@ namespace webui.Controllers
             SqlCommand sqlCommand_ = new SqlCommand();
             sqlCommand_.Connection = sqlConnection_;
             sqlCommand_.CommandType = CommandType.Text;
-            sqlCommand_.CommandText = string.Format(mLastUpdate, nOperatorName);
+            sqlCommand_.CommandText = string.Format(mLastUpdate, operatorName_);
             SqlDataReader sqlDataReader_ = sqlCommand_.ExecuteReader();
             while (sqlDataReader_.Read())
             {
