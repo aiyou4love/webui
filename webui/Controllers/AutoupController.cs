@@ -1,12 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Web.Http;
 
 namespace webui.Controllers
@@ -26,7 +21,7 @@ namespace webui.Controllers
             if ("" == operatorName_)
             {
                 updateResult_.mErrorCode = ConstAspect.mOperator;
-                return toJson(updateResult_);
+                return ConstAspect.toJson(updateResult_);
             }
 
             SqlConnection sqlConnection_ = new SqlConnection();
@@ -64,23 +59,7 @@ namespace webui.Controllers
             }
             sqlDataReader_.Close();
             sqlConnection_.Close();
-            return toJson(updateResult_);
-        }
-
-        HttpResponseMessage toJson(Object nObject)
-        {
-            String value_;
-            if (nObject is String || nObject is Char)
-            {
-                value_ = nObject.ToString();
-            }
-            else
-            {
-                value_ = JsonConvert.SerializeObject(nObject);
-            }
-            HttpResponseMessage result_ = new HttpResponseMessage();
-            result_.Content = new StringContent(value_, Encoding.GetEncoding("UTF-8"), "application/json");
-            return result_;
+            return ConstAspect.toJson(updateResult_);
         }
     }
 }

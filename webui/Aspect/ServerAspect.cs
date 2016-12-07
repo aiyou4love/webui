@@ -28,7 +28,7 @@ namespace webui
 
             return mServerStates[gameName_].getServerItem(nServerId);
         }
-
+        
         public static List<ServerItem> getServerList(string nOperatorName, int nVersionNo)
         {
             initServerState(false);

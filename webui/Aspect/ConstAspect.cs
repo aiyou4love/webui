@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System;
 using System.Configuration;
-using System.Linq;
-using System.Web;
+using System.Net.Http;
+using System.Text;
 
 namespace webui
 {
@@ -25,5 +25,21 @@ namespace webui
         public static int mAgent = 7;
 
         public static int mCreate = 8;
+
+        public static HttpResponseMessage toJson(Object nObject)
+        {
+            String value_;
+            if (nObject is String || nObject is Char)
+            {
+                value_ = nObject.ToString();
+            }
+            else
+            {
+                value_ = JsonConvert.SerializeObject(nObject);
+            }
+            HttpResponseMessage result_ = new HttpResponseMessage();
+            result_.Content = new StringContent(value_, Encoding.GetEncoding("UTF-8"), "application/json");
+            return result_;
+        }
     }
 }

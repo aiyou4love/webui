@@ -5,10 +5,10 @@ using System.Web;
 
 namespace webui
 {
-    public class ServerRequest
+    public class RoleResult
     {
-        public string mOperatorName { get; set; }
-        public int mVersionNo { get; set; }
+        public int mErrorCode { get; set; }
         public long mAccountId { get; set; }
+        public RoleItem mRoleItem { get; set; }
     }
 }

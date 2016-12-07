@@ -15,28 +15,24 @@ namespace webui.Controllers
         //content-type: application/json;charset=utf-8
         //{"mOperatorName": "iosfigus", "mVersionNo": "1"}
         [HttpPost]
-        public HttpResponseMessage getServerList(ServerRequest nServerRequest)
+        public HttpResponseMessage getServerList([FromBody]ServerRequest nServerRequest)
         {
             ServerResult serverResult_ = new ServerResult();
+            serverResult_.mRoleList = RoleAspect.getRoleList(nServerRequest.mOperatorName, nServerRequest.mVersionNo, nServerRequest.mAccountId);
             serverResult_.mServerList = ServerAspect.getServerList(nServerRequest.mOperatorName, nServerRequest.mVersionNo);
-            serverResult_.mUpInts = UpIntAspect.getUpints(nServerRequest.mOperatorName, nServerRequest.mVersionNo);
-            return toJson(serverResult_);
+            return ConstAspect.toJson(serverResult_);
         }
 
-        HttpResponseMessage toJson(Object nObject)
+        //http://localhost/api/server/getServerItems
+        //content-type: application/json;charset=utf-8
+        //{"mOperatorName": "iosfigus", "mVersionNo": "1"}
+        [HttpPost]
+        public HttpResponseMessage getServerItems([FromBody]ServerRequest nServerRequest)
         {
-            String value_;
-            if (nObject is String || nObject is Char)
-            {
-                value_ = nObject.ToString();
-            }
-            else
-            {
-                value_ = JsonConvert.SerializeObject(nObject);
-            }
-            HttpResponseMessage result_ = new HttpResponseMessage();
-            result_.Content = new StringContent(value_, Encoding.GetEncoding("UTF-8"), "application/json");
-            return result_;
+            ServerResult serverResult_ = new ServerResult();
+            serverResult_.mRoleList = RoleAspect.getRoleList(nServerRequest.mOperatorName, nServerRequest.mVersionNo, nServerRequest.mAccountId);
+            serverResult_.mServerList = ServerAspect.getServerList(nServerRequest.mOperatorName, nServerRequest.mVersionNo);
+            return ConstAspect.toJson(serverResult_);
         }
     }
 }

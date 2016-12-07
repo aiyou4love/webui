@@ -5,10 +5,9 @@ using System.Web;
 
 namespace webui
 {
-    public class ServerRequest
+    public class AccountInfo
     {
-        public string mOperatorName { get; set; }
-        public int mVersionNo { get; set; }
         public long mAccountId { get; set; }
+        public short mAuthority { get; set; }
     }
 }
