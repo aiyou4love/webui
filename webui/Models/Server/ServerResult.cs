@@ -8,6 +8,5 @@ namespace webui
     public class ServerResult
     {
         public List<ServerItem> mServerList { get; set; }
-        public List<RoleItem> mRoleList { get; set; }
     }
 }

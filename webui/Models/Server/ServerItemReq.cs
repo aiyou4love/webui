@@ -5,7 +5,7 @@ using System.Web;
 
 namespace webui
 {
-    public class ServerRequest
+    public class ServerItemReq
     {
         public string mOperatorName { get; set; }
         public int mVersionNo { get; set; }

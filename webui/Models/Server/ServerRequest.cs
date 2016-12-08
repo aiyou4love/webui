@@ -9,6 +9,5 @@ namespace webui
     {
         public string mOperatorName { get; set; }
         public int mVersionNo { get; set; }
-        public long mAccountId { get; set; }
     }
 }
