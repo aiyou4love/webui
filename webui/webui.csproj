@@ -185,12 +185,14 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Aspect\AccountAspect.cs" />
+    <Compile Include="Aspect\AgentAspect.cs" />
     <Compile Include="Aspect\ConstAspect.cs" />
     <Compile Include="Aspect\OperatorAspect.cs" />
     <Compile Include="Aspect\RoleAspect.cs" />
     <Compile Include="Aspect\ServerAspect.cs" />
     <Compile Include="Aspect\UpIntAspect.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AgentController.cs" />
     <Compile Include="Controllers\AutoupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
@@ -203,6 +205,11 @@
     <Compile Include="Models\Account\LoginRequest.cs" />
     <Compile Include="Models\Account\LoginResult.cs" />
     <Compile Include="Models\Account\RegisterRequest.cs" />
+    <Compile Include="Models\Agent\AgentClassify.cs" />
+    <Compile Include="Models\Agent\AgentInfo.cs" />
+    <Compile Include="Models\Agent\AgentRequest.cs" />
+    <Compile Include="Models\Agent\AgentResult.cs" />
+    <Compile Include="Models\Agent\AgentState.cs" />
     <Compile Include="Models\Autoup\UpdateItem.cs" />
     <Compile Include="Models\Autoup\UpdateResult.cs" />
     <Compile Include="Models\Operator\OperatorInfo.cs" />

@@ -26,6 +26,8 @@ namespace webui
 
         public static int mCreate = 8;
 
+        public static int mServerId = 9;
+
         public static HttpResponseMessage toJson(Object nObject)
         {
             String value_;
