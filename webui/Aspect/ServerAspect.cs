@@ -98,6 +98,7 @@ namespace webui
                 ServerInfo serverInfo_ = new ServerInfo();
                 string operatorName_ = sqlDataReader_.GetString(0).Trim();
                 int serverNo_ = sqlDataReader_.GetInt32(1);
+                serverInfo_.mServerNo = serverNo_;
                 DateTime dateTime_ = sqlDataReader_.GetDateTime(2);
                 serverInfo_.mServerStart = ToTimestamp(dateTime_);
                 serverInfo_.mClassify = sqlDataReader_.GetInt16(3);

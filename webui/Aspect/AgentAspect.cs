@@ -42,7 +42,7 @@ namespace webui
                 AgentInfo agentInfo_ = new AgentInfo();
                 string gameName_ = sqlDataReader_.GetString(0).Trim();
                 int agentId_ = sqlDataReader_.GetInt32(1);
-                int classify_ = sqlDataReader_.GetInt32(2);
+                int classify_ = sqlDataReader_.GetInt16(2);
                 agentInfo_.mAgentIp = sqlDataReader_.GetString(3).Trim();
                 agentInfo_.mAgentPort = sqlDataReader_.GetString(4).Trim();
                 agentInfo_.mPlayerMax = sqlDataReader_.GetInt32(5);
