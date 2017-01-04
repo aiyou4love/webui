@@ -9,5 +9,6 @@ namespace webui
     {
         public string mOperatorName { get; set; }
         public int mVersionNo { get; set; }
+        public int mClassify { get; set; }
     }
 }

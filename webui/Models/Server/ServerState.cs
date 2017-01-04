@@ -12,7 +12,7 @@ namespace webui
             return mServerItems.Keys.Max();
         }
 
-        public List<ServerItem> getServerList()
+        public List<ServerItem> getServerItems()
         {
             List<ServerItem> serverItems_ = new List<ServerItem>();
             foreach (KeyValuePair<int, ServerItem> i in mServerItems)
@@ -20,6 +20,16 @@ namespace webui
                 serverItems_.Add(i.Value);
             }
             return serverItems_;
+        }
+
+        public List<ServerInfo> getServerInfos()
+        {
+            List<ServerInfo> serverInfos_ = new List<ServerInfo>();
+            foreach (KeyValuePair<int, ServerInfo> i in mServerInfos)
+            {
+                serverInfos_.Add(i.Value);
+            }
+            return serverInfos_;
         }
 
         public void pushServerInfo(int nServerNo, ServerInfo nServerInfo)

@@ -10,5 +10,6 @@ namespace webui
         public int mServerId { get; set; }
         public string mServerName { get; set; }
         public int mServerNo { get; set; }
+        public short mServerState { get; set; }
     }
 }

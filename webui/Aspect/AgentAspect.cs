@@ -9,6 +9,16 @@ namespace webui
 {
     public class AgentAspect
     {
+        public static void pushNetIp(List<NetIp> nNetIps, string nOperatorName, int nVersionNo, int nClassify)
+        {
+            initAgent(false);
+
+            string gameName_ = OperatorAspect.getGameName(nOperatorName, nVersionNo);
+            if ("" == gameName_) return;
+
+            mAgentStates[gameName_].pushNetIp(nNetIps, nClassify);
+        }
+
         public static AgentInfo getIdleAgent(string nOperatorName, int nVersionNo, int nClassify)
         {
             initAgent(false);
@@ -19,7 +29,7 @@ namespace webui
             return mAgentStates[gameName_].getIdleAgent(nClassify);
         }
 
-        static string mInitAgent = "SELECT gameName,agentId,classify,agentIp,agentPort,playerMax,playerCount,serialNo FROM t_agentList";
+        static string mInitAgent = "SELECT gameName,agentId,classify,agentIp,agentPort,playerMax,playerCount FROM t_agentList";
         public static void initAgent(bool nReinit)
         {
             if (!nReinit)
@@ -47,7 +57,6 @@ namespace webui
                 agentInfo_.mAgentPort = sqlDataReader_.GetString(4).Trim();
                 agentInfo_.mPlayerMax = sqlDataReader_.GetInt32(5);
                 agentInfo_.mPlayerCount = sqlDataReader_.GetInt32(6);
-                agentInfo_.mSerialNo = sqlDataReader_.GetString(7).Trim();
                 if (!mAgentStates.ContainsKey(gameName_))
                 {
                     AgentClassify agentState_ = new AgentClassify();

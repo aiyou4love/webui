@@ -7,6 +7,15 @@ namespace webui
 {
     public class AgentClassify
     {
+        public void pushNetIp(List<NetIp> nNetIps, int nClassify)
+        {
+            if (!mAgentStates.ContainsKey(nClassify))
+            {
+                return;
+            }
+            mAgentStates[nClassify].pushNetIp(nNetIps);
+        }
+
         public void pushAgentInfo(int nClassify, int nAgentId, AgentInfo nAgentInfo)
         {
             if (!mAgentStates.ContainsKey(nClassify))

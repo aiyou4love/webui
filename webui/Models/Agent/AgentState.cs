@@ -7,6 +7,19 @@ namespace webui
 {
     public class AgentState
     {
+        public void pushNetIp(List<NetIp> nNetIps)
+        {
+            foreach (var i in mAgentInfos)
+            {
+                NetIp netIp_ = new NetIp();
+                netIp_.mAppNo = i.Key;
+                netIp_.mAppType = 2;
+                netIp_.mIp = i.Value.mAgentIp;
+                netIp_.mPort = i.Value.mAgentPort;
+                nNetIps.Add(netIp_);
+            }
+        }
+
         public void pushAgentInfo(int nAgentId, AgentInfo nAgentInfo)
         {
             mAgentInfos[nAgentId] = nAgentInfo;

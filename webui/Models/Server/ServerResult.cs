@@ -7,6 +7,8 @@ namespace webui
 {
     public class ServerResult
     {
-        public List<ServerItem> mServerList { get; set; }
+        public List<ServerItem> mServerItems { get; set; }
+        public List<ServerInfo> mServerInfos { get; set; }
+        public List<NetIp> mNetIps { get; set; }
     }
 }

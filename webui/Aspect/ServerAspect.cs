@@ -28,15 +28,25 @@ namespace webui
 
             return mServerStates[gameName_].getServerItem(nServerId);
         }
-        
-        public static List<ServerItem> getServerList(string nOperatorName, int nVersionNo)
+
+        public static List<ServerItem> getServerItems(string nOperatorName, int nVersionNo)
         {
             initServerState(false);
 
             string gameName_ = OperatorAspect.getGameName(nOperatorName, nVersionNo);
             if ("" == gameName_) return null;
 
-            return mServerStates[gameName_].getServerList();
+            return mServerStates[gameName_].getServerItems();
+        }
+
+        public static List<ServerInfo> getServerInfos(string nOperatorName, int nVersionNo)
+        {
+            initServerState(false);
+
+            string gameName_ = OperatorAspect.getGameName(nOperatorName, nVersionNo);
+            if ("" == gameName_) return null;
+
+            return mServerStates[gameName_].getServerInfos();
         }
 
         public static ServerInfo getServerInfo(string nOperatorName, int nVersionNo, int nServerId)
@@ -49,7 +59,7 @@ namespace webui
             return mServerStates[gameName_].getServerInfo(nServerId);
         }
 
-        static string mInitServerItems = "SELECT gameName,serverId,serverNo,serverName FROM t_serverList";
+        static string mInitServerItems = "SELECT gameName,serverId,serverNo,serverName,serverState FROM t_serverList";
         static void initServerItems()
         {
             SqlConnection sqlConnection_ = new SqlConnection();
@@ -64,17 +74,18 @@ namespace webui
             SqlDataReader sqlDataReader_ = sqlCommand_.ExecuteReader();
             while (sqlDataReader_.Read())
             {
-                string operatorName_ = sqlDataReader_.GetString(0).Trim();
+                string gameName_ = sqlDataReader_.GetString(0).Trim();
                 ServerItem serverItem_ = new ServerItem();
                 serverItem_.mServerId = sqlDataReader_.GetInt32(1);
                 serverItem_.mServerNo = sqlDataReader_.GetInt32(2);
                 serverItem_.mServerName = sqlDataReader_.GetString(3).Trim();
-                if (!mServerStates.ContainsKey(operatorName_))
+                serverItem_.mServerState = sqlDataReader_.GetInt16(4);
+                if (!mServerStates.ContainsKey(gameName_))
                 {
                     ServerState serverState_ = new ServerState();
-                    mServerStates[operatorName_] = serverState_;
+                    mServerStates[gameName_] = serverState_;
                 }
-                mServerStates[operatorName_].pushServerItem(serverItem_);
+                mServerStates[gameName_].pushServerItem(serverItem_);
             }
             sqlDataReader_.Close();
             sqlConnection_.Close();
@@ -96,18 +107,18 @@ namespace webui
             while (sqlDataReader_.Read())
             {
                 ServerInfo serverInfo_ = new ServerInfo();
-                string operatorName_ = sqlDataReader_.GetString(0).Trim();
+                string gameName_ = sqlDataReader_.GetString(0).Trim();
                 int serverNo_ = sqlDataReader_.GetInt32(1);
                 serverInfo_.mServerNo = serverNo_;
                 DateTime dateTime_ = sqlDataReader_.GetDateTime(2);
                 serverInfo_.mServerStart = ToTimestamp(dateTime_);
                 serverInfo_.mClassify = sqlDataReader_.GetInt16(3);
-                if (!mServerStates.ContainsKey(operatorName_))
+                if (!mServerStates.ContainsKey(gameName_))
                 {
                     ServerState serverState_ = new ServerState();
-                    mServerStates[operatorName_] = serverState_;
+                    mServerStates[gameName_] = serverState_;
                 }
-                mServerStates[operatorName_].pushServerInfo(serverNo_, serverInfo_);
+                mServerStates[gameName_].pushServerInfo(serverNo_, serverInfo_);
             }
             sqlDataReader_.Close();
             sqlConnection_.Close();

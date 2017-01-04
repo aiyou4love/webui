@@ -187,9 +187,11 @@
     <Compile Include="Aspect\AccountAspect.cs" />
     <Compile Include="Aspect\AgentAspect.cs" />
     <Compile Include="Aspect\ConstAspect.cs" />
+    <Compile Include="Aspect\GameAspect.cs" />
     <Compile Include="Aspect\OperatorAspect.cs" />
     <Compile Include="Aspect\RoleAspect.cs" />
     <Compile Include="Aspect\ServerAspect.cs" />
+    <Compile Include="Aspect\SocialAspect.cs" />
     <Compile Include="Aspect\UpIntAspect.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AgentController.cs" />
@@ -212,11 +214,15 @@
     <Compile Include="Models\Agent\AgentState.cs" />
     <Compile Include="Models\Autoup\UpdateItem.cs" />
     <Compile Include="Models\Autoup\UpdateResult.cs" />
+    <Compile Include="Models\Game\GameClassify.cs" />
+    <Compile Include="Models\Game\GameInfo.cs" />
+    <Compile Include="Models\Game\GameState.cs" />
     <Compile Include="Models\Operator\OperatorInfo.cs" />
     <Compile Include="Models\Role\RoleRequest.cs" />
     <Compile Include="Models\Role\RoleResult.cs" />
     <Compile Include="Models\Role\RoleStart.cs" />
     <Compile Include="Models\Role\RoleItem.cs" />
+    <Compile Include="Models\Server\NetIp.cs" />
     <Compile Include="Models\Server\ServerInfo.cs" />
     <Compile Include="Models\Server\ServerItem.cs" />
     <Compile Include="Models\Server\ServerItemReq.cs" />
@@ -224,6 +230,9 @@
     <Compile Include="Models\Server\ServerRequest.cs" />
     <Compile Include="Models\Server\ServerResult.cs" />
     <Compile Include="Models\Server\ServerState.cs" />
+    <Compile Include="Models\Social\SocialClassify.cs" />
+    <Compile Include="Models\Social\SocialInfo.cs" />
+    <Compile Include="Models\Social\SocialState.cs" />
     <Compile Include="Models\Upint\Upint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

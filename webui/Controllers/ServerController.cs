@@ -18,7 +18,12 @@ namespace webui.Controllers
         public HttpResponseMessage getServerList([FromBody]ServerRequest nServerRequest)
         {
             ServerResult serverResult_ = new ServerResult();
-            serverResult_.mServerList = ServerAspect.getServerList(nServerRequest.mOperatorName, nServerRequest.mVersionNo);
+            serverResult_.mServerItems = ServerAspect.getServerItems(nServerRequest.mOperatorName, nServerRequest.mVersionNo);
+            serverResult_.mServerInfos = ServerAspect.getServerInfos(nServerRequest.mOperatorName, nServerRequest.mVersionNo);
+            serverResult_.mNetIps = new List<NetIp>();
+            AgentAspect.pushNetIp(serverResult_.mNetIps, nServerRequest.mOperatorName, nServerRequest.mVersionNo, nServerRequest.mClassify);
+            SocialAspect.pushNetIp(serverResult_.mNetIps, nServerRequest.mOperatorName, nServerRequest.mVersionNo, nServerRequest.mClassify);
+            GameAspect.pushNetIp(serverResult_.mNetIps, nServerRequest.mOperatorName, nServerRequest.mVersionNo, nServerRequest.mClassify);
             return ConstAspect.toJson(serverResult_);
         }
 
@@ -30,7 +35,7 @@ namespace webui.Controllers
         {
             ServerItemRes serverItemRes_ = new ServerItemRes();
             serverItemRes_.mRoleList = RoleAspect.getRoleList(nServerItemReq.mOperatorName, nServerItemReq.mVersionNo, nServerItemReq.mAccountId);
-            serverItemRes_.mServerList = ServerAspect.getServerList(nServerItemReq.mOperatorName, nServerItemReq.mVersionNo);
+            serverItemRes_.mServerList = ServerAspect.getServerItems(nServerItemReq.mOperatorName, nServerItemReq.mVersionNo);
             return ConstAspect.toJson(serverItemRes_);
         }
     }
