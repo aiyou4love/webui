@@ -9,7 +9,7 @@ namespace webui.Controllers
     public class AutoupController : ApiController
     {
         //http://localhost/api/autoup/lastupdate/?nOperatorName=iosfigus&nVersionNo=1
-        readonly string mLastUpdate = "SELECT updateName,updateNo,packetName,downloadUrl FROM t_lastUpdate WHERE operatorName='{0}'";
+        readonly string mLastUpdate = "SELECT updateName,updateNo,packetName,downloadUrl FROM t_autoUpdate WHERE operatorName='{0}'";
         [HttpGet]
         public HttpResponseMessage lastUpdate(string nOperatorName, int nVersionNo)
         {
