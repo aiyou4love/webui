@@ -13,7 +13,7 @@ namespace webui
             {
                 NetIp netIp_ = new NetIp();
                 netIp_.mAppNo = i.Key;
-                netIp_.mAppType = 2;
+                netIp_.mAppType = 4;
                 netIp_.mIp = i.Value.mSocialIp;
                 netIp_.mPort = i.Value.mSocialPort;
                 nNetIps.Add(netIp_);

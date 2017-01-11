@@ -44,7 +44,7 @@ namespace webui
                 int gameId_ = sqlDataReader_.GetInt32(1);
                 int classify_ = sqlDataReader_.GetInt16(2);
                 gameInfo_.mSocialIp = sqlDataReader_.GetString(3).Trim();
-                gameInfo_.mSocialIp = sqlDataReader_.GetString(4).Trim();
+                gameInfo_.mSocialPort = sqlDataReader_.GetString(4).Trim();
                 if (!mGameStates.ContainsKey(gameName_))
                 {
                     SocialClassify gameState_ = new SocialClassify();
