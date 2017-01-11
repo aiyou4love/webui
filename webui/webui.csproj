@@ -204,6 +204,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account\AccountInfo.cs" />
+    <Compile Include="Models\Account\EnterRequest.cs" />
+    <Compile Include="Models\Account\EnterResult.cs" />
     <Compile Include="Models\Account\LoginRequest.cs" />
     <Compile Include="Models\Account\LoginResult.cs" />
     <Compile Include="Models\Account\RegisterRequest.cs" />

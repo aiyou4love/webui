@@ -11,6 +11,38 @@ namespace webui.Controllers
 {
     public class AccountController : ApiController
     {
+        //http://localhost:8313/api/values/accountEnter
+        //content-type: application/json;charset=utf-8
+        //{"mAccountName": "zyh", "mAccountPassword": "123456", "mAgentName": "iosfigus", "mVersionNo": "1","mAccountId": "1", "mServerId": "1", "mRoleId": "1", "mStart": "true"}
+        [HttpPost]
+        public HttpResponseMessage accountEnter([FromBody]EnterRequest nEnterRequest)
+        {
+            AccountInfo accountInfo_ = AccountAspect.getAccountId(nEnterRequest.mAccountName, nEnterRequest.mPassword, nEnterRequest.mAccountType);
+            EnterResult enterResult_ = new EnterResult();
+            enterResult_.mErrorCode = ConstAspect.mFail;
+            enterResult_.mAuthority = 0;
+            enterResult_.mRoleItem = null;
+            if ((null == accountInfo_) || (accountInfo_.mAccountId <= 0) || (accountInfo_.mAccountId != nEnterRequest.mAccountId))
+            {
+                enterResult_.mErrorCode = ConstAspect.mAccount;
+                return ConstAspect.toJson(enterResult_);
+            }
+            enterResult_.mAuthority = accountInfo_.mAuthority;
+            RoleItem roleItem_ = RoleAspect.getRoleInfo(nEnterRequest.mOperatorName, nEnterRequest.mVersionNo, nEnterRequest.mAccountId, nEnterRequest.mRoleId, nEnterRequest.mServerId);
+            if (null == roleItem_)
+            {
+                enterResult_.mErrorCode = ConstAspect.mRole;
+                return ConstAspect.toJson(enterResult_);
+            }
+            enterResult_.mErrorCode = ConstAspect.mSucess;
+            enterResult_.mRoleItem = roleItem_;
+            if (nEnterRequest.mStart)
+            {
+                RoleAspect.updateRoleStart(nEnterRequest.mOperatorName, nEnterRequest.mVersionNo, nEnterRequest.mAccountId, nEnterRequest.mServerId, nEnterRequest.mRoleId);
+            }
+            return ConstAspect.toJson(enterResult_);
+        }
+
         //http://localhost/api/account/accountLogin
         //content-type: application/json;charset=utf-8
         //{"mAccountName": "zyh", "mPassword": "123456", "mAgentName": "iosfigus", "mVersionNo": "1"}
